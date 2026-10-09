@@ -1,0 +1,382 @@
+@import url('https://fonts.googleapis.com/css2?family=Noto+Sans+JP:wght@400;500;700;900&family=JetBrains+Mono:wght@400;700&display=swap');
+@import './styles/slidev-intro.css';
+
+/* ============================================================
+   Design Tokens
+   ============================================================ */
+:root {
+  --color-bg:            #727B5F;
+  --color-deco-mid:      #B5CAA0;
+  --color-deco-light:    #F3F6F0;
+  --color-text:          #ffffff;
+  --color-text-muted:    #dddddd;
+  --color-bar:           #ffffff;
+  --color-accent:        #96C058;
+  --color-accent-red:    #DA4C34;
+  --color-accent-orange: #EA935E;
+  --color-accent-yellow: #FACF64;
+  --color-accent-cyan:   #5BC4B8;
+  --color-accent-purple: #8B6DB5;
+  --color-media-surface: #F4F6F2;
+  --color-text-on-light: #333333;
+  --font-ja:   'Noto Sans JP', sans-serif;
+  --font-mono: 'JetBrains Mono', monospace;
+
+  /* Typography scale */
+  --text-hero:    3.4rem;
+  --text-name:    3rem;
+  --text-heading: 2.5rem;
+  --text-heading-secondary: 2rem;
+  --text-title:   1.6rem;
+  --text-title-sm: 1.3rem;
+  --text-body:    1.25rem;
+  --text-fact:    1.18rem;
+  --text-sub:     1.05rem;
+  --text-sm:      1rem;
+  --text-xs:      0.85rem;
+  --text-caption: 0.72rem;
+  --text-footer:  0.65rem;
+  --text-citation: 0.43rem;
+
+  /* Typography rhythm */
+  --line-heading: 1.3;
+  --line-body:    1.7;
+
+  /* Layout spacing */
+  --layout-px:               2rem;
+  --layout-deco-clearance:   6rem;
+  --layout-pr:               calc(var(--layout-px) + var(--layout-deco-clearance));
+  --layout-footer-clearance: 1.5rem;
+
+  /* Surface colors */
+  --color-badge-default: #3a3f33;
+}
+
+html.dark {
+  --color-bg: #424837;
+}
+
+/* ============================================================
+   Language Brand Tokens
+   Use with <LanguageBadge lang="php" /> etc.
+   For languages needing dark text, define --lang-*-text.
+   ============================================================ */
+:root {
+  --lang-c:          #5C7ABA;
+  --lang-cpp:        #00599C;
+  --lang-csharp:     #68217A;
+  --lang-php:        #777BB4;
+  --lang-ruby:       #CC342D;
+  --lang-java:       #ED8B00;
+  --lang-kotlin:     #7F52FF;
+  --lang-rust:       #CE422B;
+  --lang-python:     #3776AB;
+  --lang-go:         #00ACD7;
+  --lang-r:          #276DC2;
+  --lang-javascript: #F7DF1E;
+  --lang-javascript-text: #333333;
+  --lang-typescript: #3178C6;
+  --lang-dart:       #0175C2;
+  --lang-flutter:    #0553B1;
+  --lang-react:      #149ECA;
+  --lang-nextjs:     #4A4A4A;
+  --lang-vuejs:      #42B883;
+  --lang-nuxt:     #007A45;
+  --lang-mysql:      #4479A1;
+  --lang-matlab:     #0076A8;
+  --lang-mermaid:    #CC2255;
+  --lang-erlang:     #A90533;
+  --lang-vbnet:      #512BD4;
+  --lang-mcfunction: #5B8A38;
+  --lang-smilebasic: #E85A0C;
+  --lang-fermium:    #8B6DB5;
+}
+
+/* ============================================================
+   Global Slide Base
+   ============================================================ */
+.slidev-layout,
+.cover-slide,
+.section-slide,
+.horizontal-split-slide,
+.content-slide,
+.vertical-split-slide {
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  height: 100%;
+  font-family: var(--font-ja);
+  color: var(--color-text);
+  background-color: var(--color-bg);
+  overflow: hidden;
+  isolation: isolate;
+}
+
+.content-slide__main,
+.vertical-split-slide__bottom,
+.horizontal-split-slide__left {
+  font-size: var(--text-body);
+  line-height: var(--line-body);
+  flex-direction: column;
+}
+
+.content-slide :is(h2, h3),
+.vertical-split-slide :is(h2, h3),
+.horizontal-split-slide :is(h2, h3) {
+  line-height: var(--line-heading);
+  color: var(--color-text);
+}
+
+.content-slide h2,
+.vertical-split-slide h2,
+.horizontal-split-slide h2 {
+  margin: 0 0 0.8rem;
+  font-size: var(--text-heading-secondary);
+  font-weight: 700;
+}
+
+.content-slide h3,
+.vertical-split-slide h3,
+.horizontal-split-slide h3 {
+  margin: 1.05rem 0 0.45rem;
+  font-size: var(--text-title);
+  font-weight: 700;
+}
+
+.content-slide h4,
+.vertical-split-slide h4,
+.horizontal-split-slide h4 {
+  margin: 0.9rem 0 0.35rem;
+  font-size: var(--text-title-sm);
+  font-weight: 600;
+  line-height: var(--line-heading);
+  color: var(--color-text);
+}
+
+.content-slide p,
+.vertical-split-slide p,
+.horizontal-split-slide p {
+  margin: 0 0 0.75rem;
+}
+
+blockquote {
+  margin: 0.5rem 0 0.75rem;
+  padding: 0.3rem 1rem;
+  border-left: 0.25rem solid var(--color-accent);
+  color: var(--color-text-muted);
+  font-size: 0.95em;
+}
+
+blockquote > p {
+  margin: 0;
+}
+
+/* > [!IMPORTANT] / > [!WARNING] (markdown/callouts.ts) */
+blockquote.callout {
+  margin: 0.5rem 0 0.75rem;
+  padding: 0.75rem 1.25rem;
+  border-radius: 0 0.5rem 0.5rem 0;
+  background: rgb(255 255 255 / 0.07);
+  color: var(--color-text);
+  font-size: 1em;
+}
+
+blockquote.callout--warning {
+  border-left-color: var(--color-accent-orange);
+}
+
+/* ![alt](src "caption") (markdown/figures.ts) */
+.md-figure {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 0.35rem;
+  margin: 0;
+}
+
+.md-figure figcaption {
+  font-size: var(--text-caption);
+  color: var(--color-text-muted);
+}
+
+/* In a fixed-height area the image shrinks so the caption stays visible */
+.vertical-split-slide__top .md-figure {
+  height: 100%;
+  min-height: 0;
+}
+
+.vertical-split-slide__top .md-figure img {
+  flex: 1 1 0;
+  min-height: 0;
+}
+
+.slidev-layout a,
+.horizontal-split-slide a,
+.vertical-split-slide a,
+.content-slide a {
+  color: var(--color-accent-cyan);
+  text-decoration: underline;
+  text-underline-offset: 0.12em;
+}
+
+/* ::left:: / ::right:: columns in content and vertical-split; the layout's `cols` prop overrides the widths */
+.slide-cols {
+  display: grid;
+  grid-template-columns: minmax(0, 1fr) minmax(0, 1fr);
+  align-items: center;
+  gap: 1.5rem;
+  width: 100%;
+}
+
+.slide-cols > div {
+  min-width: 0;
+}
+
+.text-block {
+  width: 100%;
+  max-width: 30rem;
+}
+
+.text-block--left {
+  align-self: stretch;
+  text-align: left;
+}
+
+.slidev-layout ul,
+.horizontal-split-slide ul,
+.vertical-split-slide ul,
+.content-slide ul {
+  margin: 0.25rem 0 0.75rem;
+  list-style: disc !important;
+  padding-left: 1.4rem;
+  line-height: var(--line-body);
+}
+
+.slidev-layout ul > li,
+.horizontal-split-slide ul > li,
+.vertical-split-slide ul > li,
+.content-slide ul > li {
+  margin-bottom: 0.1rem;
+}
+
+.slidev-layout ul > li:has(> ul),
+.horizontal-split-slide ul > li:has(> ul),
+.vertical-split-slide ul > li:has(> ul),
+.content-slide ul > li:has(> ul) {
+  margin-bottom: 0.45rem;
+}
+
+.slidev-layout li > p,
+.horizontal-split-slide li > p,
+.vertical-split-slide li > p,
+.content-slide li > p {
+  margin: 0;
+}
+
+.slidev-layout li > ul,
+.horizontal-split-slide li > ul,
+.vertical-split-slide li > ul,
+.content-slide li > ul {
+  margin: 0.05rem 0 0;
+}
+
+.slidev-layout img,
+.horizontal-split-slide img,
+.vertical-split-slide img,
+.content-slide img {
+  max-width: 100%;
+  height: auto;
+}
+
+.slidev-code-wrapper .slidev-code-copy {
+  top: 0.35rem;
+  right: 0.35rem;
+  z-index: 2;
+  border-radius: 0.3rem;
+  color: var(--color-text);
+  background: rgb(58 63 51 / 0.74);
+  opacity: 0;
+}
+
+.slidev-code-wrapper:hover .slidev-code-copy,
+.slidev-code-wrapper .slidev-code-copy:focus-visible {
+  opacity: 1;
+}
+
+.slidev-code-wrapper .slidev-code-copy:hover {
+  background: rgb(58 63 51 / 0.92);
+}
+
+.vertical-split-slide__top img,
+.horizontal-split-slide__right img {
+  max-height: 100%;
+  width: auto;
+  object-fit: contain;
+  display: block;
+}
+
+/* ============================================================
+   Table
+   ============================================================ */
+.slidev-layout table,
+.horizontal-split-slide table,
+.vertical-split-slide table,
+.content-slide table {
+  width: 100%;
+  border-collapse: collapse;
+  font-size: var(--text-xs);
+  margin: 0.5rem 0 0.75rem;
+}
+
+.slidev-layout th,
+.horizontal-split-slide th,
+.vertical-split-slide th,
+.content-slide th {
+  padding: 0.45rem 0.75rem;
+  text-align: left;
+  font-weight: 600;
+  background: var(--color-accent);
+  border-bottom: 1px solid var(--color-accent);
+  border-right: 1px solid rgb(255 255 255 / 0.25);
+  color: var(--color-text-on-light);
+}
+
+.slidev-layout td,
+.horizontal-split-slide td,
+.vertical-split-slide td,
+.content-slide td {
+  padding: 0.4rem 0.75rem;
+  background: #ffffff;
+  border-bottom: 1px solid rgb(0 0 0 / 0.08);
+  border-right: 1px solid rgb(0 0 0 / 0.08);
+  color: var(--color-text-on-light);
+}
+
+.slidev-layout tr:last-child td,
+.horizontal-split-slide tr:last-child td,
+.vertical-split-slide tr:last-child td,
+.content-slide tr:last-child td {
+  border-bottom: none;
+}
+
+.slidev-layout th:last-child,
+.slidev-layout td:last-child,
+.horizontal-split-slide th:last-child,
+.horizontal-split-slide td:last-child,
+.vertical-split-slide th:last-child,
+.vertical-split-slide td:last-child,
+.content-slide th:last-child,
+.content-slide td:last-child {
+  border-right: none;
+}
+
+/* Opt-in via `class: section-left` in a slide's frontmatter: left-align a section title.
+   !important because layouts/section.vue's scoped rules have equal specificity. */
+.section-left .section-slide__body {
+  align-items: flex-start !important;
+  padding-left: var(--layout-px) !important;
+}
+
+.section-left .section-slide__title {
+  text-align: left !important;
+}

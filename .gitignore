@@ -1,0 +1,15 @@
+node_modules
+.DS_Store
+dist
+*.local
+*.local.md
+.vite-inspect
+.remote-assets
+components.d.ts
+
+# Export artifacts
+screenshots/
+
+# Design source files
+design/
+/.vercel

@@ -1,0 +1,156 @@
+{
+  "Slidev Cover Layout": {
+    "scope": "markdown",
+    "prefix": "sl-cover",
+    "description": "Slidev cover layout frontmatter scaffold",
+    "body": [
+      "---",
+      "title: ${1:TNP 2026年 4月分 活動報告 (@NitCelcius)}",
+      "layout: cover",
+      "photo: ${2:./assets/icon.png}",
+      "name: ${3:氏名}",
+      "reading: ${4:ふりがな}",
+      "handle: ${5:@handle}",
+      "affiliation: ${6:所属}",
+      "---",
+      "",
+      "${0:2026年 4月分 活動報告}"
+    ]
+  },
+  "Slidev Section Layout": {
+    "scope": "markdown",
+    "prefix": "sl-section",
+    "description": "Slidev section layout frontmatter scaffold",
+    "body": [
+      "---",
+      "layout: section",
+      "heading: ${1:セクションタイトル}",
+      "---",
+      "",
+      "$0"
+    ]
+  },
+  "Slidev Content Layout": {
+    "scope": "markdown",
+    "prefix": "sl-content",
+    "description": "Content slide (layout: content is the default, so no layout line)",
+    "body": [
+      "---",
+      "heading: ${1:スライドタイトル}",
+      "subheading: ${2:サブタイトル}",
+      "---",
+      "",
+      "- ${0:本文}"
+    ]
+  },
+  "Slidev Content Columns": {
+    "scope": "markdown",
+    "prefix": "sl-cols",
+    "description": "Content slide with an intro line and ::left:: / ::right:: columns",
+    "body": [
+      "---",
+      "heading: ${1:スライドタイトル}",
+      "cols: '${2:minmax(0, 1fr) minmax(0, 1fr)}'",
+      "---",
+      "",
+      "${3:導入文}",
+      "",
+      "::left::",
+      "",
+      "- ${4:左カラム}",
+      "",
+      "::right::",
+      "",
+      "- ${0:右カラム}"
+    ]
+  },
+  "Slidev Horizontal Split Layout": {
+    "scope": "markdown",
+    "prefix": "sl-horizontal-split",
+    "description": "Left / right split slide (text + image)",
+    "body": [
+      "---",
+      "layout: horizontal-split",
+      "heading: ${1:スライドタイトル}",
+      "subheading: ${2:サブタイトル}",
+      "---",
+      "",
+      "::left::",
+      "",
+      "- ${3:左カラム本文}",
+      "",
+      "::right::",
+      "",
+      "${0:![画像](../assets/image.png)}"
+    ]
+  },
+  "Slidev Vertical Split Layout": {
+    "scope": "markdown",
+    "prefix": "sl-vertical-split",
+    "description": "Top image + bottom text; ::left:: / ::right:: split the bottom",
+    "body": [
+      "---",
+      "layout: vertical-split",
+      "heading: ${1:スライドタイトル}",
+      "subheading: ${2:サブタイトル}",
+      "---",
+      "",
+      "::top::",
+      "",
+      "![${3:画像説明}](${4:../assets/image.png})",
+      "",
+      "::bottom::",
+      "",
+      "- ${0:本文}"
+    ]
+  },
+  "Slidev Callout": {
+    "scope": "markdown",
+    "prefix": "sl-callout",
+    "description": "Highlighted callout box (IMPORTANT or WARNING)",
+    "body": [
+      "> [!${1|IMPORTANT,WARNING|}]",
+      "> ${0:本文}"
+    ]
+  },
+  "Slidev Figure": {
+    "scope": "markdown",
+    "prefix": "sl-figure",
+    "description": "Image with a caption (the title becomes the figcaption)",
+    "body": [
+      "![${1:画像説明}](${2:../assets/image.png} \"${0:キャプション}\")"
+    ]
+  },
+  "Slidev Badge": {
+    "scope": "markdown",
+    "prefix": "sl-badge",
+    "description": "Badge component scaffold",
+    "body": [
+      "<Badge${1: color=\"accent\"}>${0:Label}</Badge>"
+    ]
+  },
+  "Slidev Language Badge": {
+    "scope": "markdown",
+    "prefix": "sl-badge-lang",
+    "description": "LanguageBadge with the language's brand color",
+    "body": [
+      "<LanguageBadge lang=\"${0:typescript}\" />"
+    ]
+  },
+  "Slidev Brand Emoji": {
+    "scope": "markdown",
+    "prefix": "sl-emoji",
+    "description": "BrandEmoji icon with optional trailing text",
+    "body": [
+      "<BrandEmoji name=\"${1|typescript,slidev,markdown,vue,powerpoint,google-slides,notebooklm,prettier|}\" after-text=\"${0:ラベル}\" />"
+    ]
+  },
+  "Slidev Style Attr": {
+    "scope": "markdown",
+    "prefix": "sl-style",
+    "description": "Inline style attribute scaffold for Slidev markdown HTML",
+    "body": [
+      "style=\"${0:display:grid;gap:1rem}\""
+    ]
+  }
+}

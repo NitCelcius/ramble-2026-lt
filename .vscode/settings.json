@@ -1,0 +1,35 @@
+{
+  "markdownlint.config": {
+    // inline HTMLはslidevで使う
+    "MD033": false,
+    // Slidevのattributeの周りに改行は不要とする
+    "MD022": false,
+    // Slidevはh1見出しをスライドの区切りとする
+    "MD041": false,
+    // Slidevは --- で区切るので duplicate になるのは仕方がなく無効化
+    "MD024": false,
+    // Slidev はスライドごとに見出しの概念が出てくるべきなので、必ずしもレベルが昇順になるべきではない
+    "MD001": false,
+    // --- のスライド区切りは Slidev では見出しとして扱われないので、別に # と -- の混在はチェックしない
+    "MD003": false
+  },
+  // 好みだが、スペースは基本的に半角スペースを使う
+  "japanese-proofreading.textlint.全角文字どうし": false,
+  "cSpell.words": [
+    "Celcius", "NitCelcius",
+    "mcfunction",
+    "slidev"
+  ],
+  "emmet.includeLanguages": {
+    "markdown": "html"
+  },
+  "[markdown]": {
+    "editor.quickSuggestions": {
+      "strings": true,
+      "other": true,
+    },
+    "cSpell.fixSpellingWithRenameProvider": true,
+    "cSpell.advanced.feature.useReferenceProviderWithRename": true,
+    "bracketLens.mode": "on-save"
+  }
+}
