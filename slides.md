@@ -2,7 +2,7 @@
 theme: none
 transition: null
 codeCopy: true
-title: 'PowerPoint で作った329枚のスライドを Slidev に移行する話 (@NitCelcius)'
+title: '329枚のスライドを LLMの力で Slidev に移行する話 (@NitCelcius)'
 defaults:
   footerText: 'Ramble Vol.4 LT @NitCelcius'
   layout: content
@@ -44,7 +44,8 @@ heading: PowerPoint はつらい
 - デザイン**修正の影響範囲**がデカい
   - 1つ直せばもう1つが直ってない
 
-内容を書くことだけに集中したいのだが…
+> [!WARNING]
+> 内容を書くことだけに集中したいが…
 
 ::right::
 
@@ -63,7 +64,7 @@ cols: 'minmax(0, 3fr) minmax(0, 1.5fr)'
 - コードのハイライト機能や
 - スライド上で動くコードエディタ
 ```python
-print("Hello World!");
+print("Hello World!")
 ```
 
 - 図は Mermaid 対応
@@ -86,8 +87,10 @@ heading: Vue の経験がそのまま使える
 - レイアウトは <BrandEmoji name="vue" after-text="Vue" /> のコンポーネントとして作成する
   - <BrandEmoji name="powerpoint" after-text="PowerPoint" /> のスライドマスターにあたる
   - `props` と `slot` で設計できる
-- よって、レイアウトやコンポーネントは1か所直せば全ページに波及する
 - <BrandEmoji name="storybook" after-text="Storybook" /> でコンポーネントを確認することもできる
+
+> [!IMPORTANT]
+> レイアウトやコンポーネントは1か所直せば全ページに波及する
 
 ---
 heading: 書くのは markdown だけ
@@ -146,8 +149,6 @@ layout: section
 heading: Slidev に移行する話
 ---
 
-# hoge
-
 ---
 heading: LLM に頼んでみた
 ---
@@ -175,22 +176,26 @@ heading: LLM に頼んでみた
 <TermIntro reading="しんりち" term="真理値">
 ```
 
-これでは、さすがにつらい
+> [!WARNING]
+> これでは、さすがにつらい
 
 ---
 heading: ルール① 書き方のルール
 ---
 
-**こういった失敗はルール化しよう**
+> [!IMPORTANT]
+> こういった失敗はルール化しよう
 
 - レイアウト・コンポーネントとデザインの対応を先に決めてみた
   - <BrandEmoji name="powerpoint" after-text="PowerPoint" /> のスライドマスターと似た発想
 - 作った対応表だけで変換させた
   - 新しい部品やデザインを作るのは禁止
 
-<!--
-TODO: 対応表を PR #50 の CLAUDE.md の箇条書きから作り直して2〜3行載せる
--->
+| デザイン | 書き方 |
+|---|---|
+| 強調の囲み | `> [!IMPORTANT]` |
+| 左右2列 | `::left::` / `::right::` |
+| 画像＋キャプション | `![説明](x.png "キャプション")` |
 
 ---
 heading: ルール② 終了条件を用意する
@@ -199,7 +204,8 @@ cols: 'minmax(0, 3fr) minmax(0, 2fr)'
 
 ::left::
 
-**条件を満たして初めて完成としよう**
+> [!IMPORTANT]
+> 条件を満たして初めて完成としよう
 
 - テンプレートの Visual Regression Test
   - テンプレートの見本を描画してルールに沿っているかチェック
@@ -212,7 +218,7 @@ cols: 'minmax(0, 3fr) minmax(0, 2fr)'
 
 ::right::
 
-![VRT の差分](/assets/ramble-4/vrt-pr49-slide51.png "コードブロックが縮んでいる図")
+![VRT の差分](/assets/ramble-4/vrt-pr49-slide51.png "前後を画像にして自動で比べ、変わった所を赤枠で示す")
 
 ---
 heading: ルール③ 1枚だけの修正を禁止する
@@ -221,7 +227,8 @@ cols: 'minmax(0, 1fr) minmax(0, 0.8fr)'
 
 ::left::
 
-**例外を作らせないようにしよう**
+> [!IMPORTANT]
+> 例外を作らせないようにしよう
 
 - 「この1枚だけ文字が入らないんだよな」
   - LLM は文字を小さくして無理やり入れがち
@@ -232,7 +239,7 @@ cols: 'minmax(0, 1fr) minmax(0, 0.8fr)'
 
 ::right::
 
-```css [禁止されるパターン]
+```css [禁止：中身を縮めて詰め込む]
 .s18-mermaid-wrap .mermaid {
   /* 無理くり入れようとする LLM */
   transform: scale(0.76);
@@ -244,9 +251,9 @@ cols: 'minmax(0, 1fr) minmax(0, 0.8fr)'
 }
 ```
 
-```css [推奨されるパターン]
+```css [許可：余白や配置を調整する]
 .s18-mermaid-wrap svg {
-  /* 余白を減らさせる */
+  /* 高さを指定すると、縦横比に合わせて幅も変わる */
   height: 13rem !important;
 }
 ```
@@ -329,6 +336,23 @@ if (a > 10) {
 ![後の描画結果](/assets/ramble-4/2-1-p181-after.png "後: 波かっこの緑のチップがなくなるなど、見た目も少し変わった")
 
 ---
+heading: 変換し直した結果
+subheading: STAGE 2-1 (1節) の比較
+---
+
+| | 前 | 後 |
+|---|---:|---:|
+| タグ | 1,743 | 197 |
+| class | 928 | 19 |
+| 専用 CSS | 1,524行 | 6行 |
+
+全節を約2週間で変換できた
+
+> [!IMPORTANT]
+> ルールを決めることで、
+> LLMが早くクリーンにタスクを終えられるようになった
+
+---
 heading: まとめ
 ---
 
@@ -337,9 +361,9 @@ heading: まとめ
   - Vue component を使ってリッチなコンテンツを作れる
   - ロマン満載
 - **ルールを決めてから LLM に任せる**
-  - スライドのlayout・componentはルールを決めて使う
-  - VRTと一緒に完了条件を決める
-  - LLM に例外的なスライドを作らせない
+  - 使ってよいコンポーネントやレイアウトを先に決める
+  - 完了の条件を、画像比較のように機械的に確認可能にする
+  - LLM に例外的な扱いを作らせない
 
 ---
 heading: EOF
