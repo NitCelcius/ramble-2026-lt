@@ -2,7 +2,7 @@
 theme: none
 transition: null
 codeCopy: true
-title: '329枚のスライドを LLMの力で Slidev に移行する話 (@NitCelcius)'
+title: '329枚のスライドを LLMの力で Slidev に移行した話 (@NitCelcius)'
 info: &description PowerPoint で作った講義スライド 329 枚をLLM に任せて Slidev へ移行した話 / Ramble Vol.4 LT
 seoMeta:
   ogDescription: *description
@@ -19,7 +19,7 @@ venue: 'Ramble Vol.4'
 
 329枚のスライドを
 LLMの力で
-**<BrandEmoji name="slidev" after-text="Slidev" />** に移行する話
+**<BrandEmoji name="slidev" after-text="Slidev" />** に移行した話
 
 ---
 heading: 勢い駆動スライド作成
@@ -153,7 +153,7 @@ printf で `"%d"` で表示できるが
 
 ---
 layout: section
-heading: Slidev に移行する話
+heading: Slidev に移行した話
 ---
 
 ---
