@@ -3,7 +3,6 @@ theme: none
 transition: null
 codeCopy: true
 title: '329枚のスライドを LLMの力で Slidev に移行する話 (@NitCelcius)'
-lang: ja
 info: &description PowerPoint で作った講義スライド 329 枚をLLM に任せて Slidev へ移行した話 / Ramble Vol.4 LT
 seoMeta:
   ogDescription: *description
